@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "Button";
+}
+
+<h2>Button Example</h2>
+
+<button type="button" class="btn btn-primary active" id="active_button">Active Primary</button>
+<button type="button" class="btn btn-primary disabled" id="disabled_button">Disabled Primary</button>
+<button type="button" class="btn btn-info" id="btn_info">Info</button>
+<button type="button" class="btn" id="btn_click">Click Button</button>
+
+@section scripts {
+
+    <script>
+
+        $("#btn_click").click(function () {
+            $(this).addClass("btn-success");
+        });
+
+    </script>
+
+}

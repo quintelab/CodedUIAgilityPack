@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodedUIAgilityPack", "CodedUIAgilityPack\CodedUIAgilityPack.csproj", "{6D6812A3-CC4E-4FA1-B1CC-C79C0F420B80}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodedUIAgilityPack.Web", "CodedUIAgilityPack.Web\CodedUIAgilityPack.Web.csproj", "{5E1B421C-ECC0-4589-B696-626F4510F3A0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{6D6812A3-CC4E-4FA1-B1CC-C79C0F420B80}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6D6812A3-CC4E-4FA1-B1CC-C79C0F420B80}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6D6812A3-CC4E-4FA1-B1CC-C79C0F420B80}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E1B421C-ECC0-4589-B696-626F4510F3A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E1B421C-ECC0-4589-B696-626F4510F3A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E1B421C-ECC0-4589-B696-626F4510F3A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E1B421C-ECC0-4589-B696-626F4510F3A0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
