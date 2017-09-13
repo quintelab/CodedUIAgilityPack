@@ -43,3 +43,9 @@ namespace CodedUIAgilityPack.Demo
 }
 
 ```
+## How to install
+You can install it from [Nuget](https://www.nuget.org/packages/CodedUIAgilityPack/)
+
+```
+Install-Package CodedUIAgilityPack -Version 1.0.0
+```
