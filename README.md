@@ -1,9 +1,9 @@
 # Coded UI Agility Pack
-Coded UI Agility Pack was built to help developers that wants to create Coded UI Tests (Automation Tests).
+Coded UI Agility Pack was built to help developers that want to create Coded UI Tests (Automation Tests).
 
-Most of the articles and guides use the **Record Action** to generate the UI Test Code. Using **Coded UI Agility Pack** you do not need it. You can code your Coded Ui Tests as you code your Unit Tests.
+Most of the articles and guides use the **Record Action** option to generate the UI Test Code. Using **Coded UI Agility Pack** you do not need it. You can code your Coded Ui Tests as you code your Unit Tests.
 
-There are examples about how to use every option available on Coded UI Agility Pack on the [Demo project](https://github.com/quintelab/CodedUIAgilityPack/tree/master/CodedUIAgilityPack.Demo)
+There are a few examples on how you can use every option available on Coded UI Agility Pack on the [Demo project](https://github.com/quintelab/CodedUIAgilityPack/tree/master/CodedUIAgilityPack.Demo)
 
 ## Simple Example
 
