@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>CodedUIAgilityPack</id>
+    <version>1.0.0</version>
+    <title>CodedUI Agility Pack</title>
+    <authors>Bruno Quintella</authors>
+    <owners>Bruno Quintella</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <projectUrl>https://github.com/quintelab/CodedUIAgilityPack</projectUrl>
+    <description>
+      Package to help and make easy create Coded UI Tests without using the record option.
+      You can start and finish your tests only coding. CodedUI Agility Pack will help you to find your controls and manipulate their properties.
+    </description>
+    <releaseNotes>
+      It includes the basic controls: Button, CheckBox, DropDownList, RadioButton and TextBox.
+    </releaseNotes>
+    <copyright>Copyright 2017</copyright>
+    <tags>CodedUI Test</tags>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="Microsoft.VisualStudio.TestTools.UITesting.dll"  />
+      <frameworkAssembly assemblyName="Microsoft.VisualStudio.TestTools.UITest.Extension.dll"  />
+    </frameworkAssemblies>
+  </metadata>
+</package>
