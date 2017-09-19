@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UITesting;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Configuration;
 
 namespace CodedUIAgilityPack.Demo
 {
@@ -15,7 +16,7 @@ namespace CodedUIAgilityPack.Demo
         {
             Playback.PlaybackSettings.LoggerOverrideState = HtmlLoggerState.AllActionSnapshot;
             Playback.PlaybackSettings.DelayBetweenActions = 0;
-            Browse.BrowserWindow = BrowserWindow.Launch(new Uri("http://localhost/CodedUIAgilityPack.Web/RadioButton"));
+            Browse.BrowserWindow = BrowserWindow.Launch(new Uri($"{ConfigurationManager.AppSettings["DefaultUrl"]}/RadioButton"));
 
             myRadioButton = new RadioButtonControl("gender");
             myRadioButton.AddItem("gender_male", "m", "Male");

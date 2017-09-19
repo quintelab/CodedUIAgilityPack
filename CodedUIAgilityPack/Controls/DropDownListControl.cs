@@ -10,15 +10,6 @@ namespace CodedUIAgilityPack.Controls
     public class DropDownListControl : IDropDownListControls
     {
         private string _controlName;
-        private List<ListOptions> _dropDownListOptions;
-
-        public List<ListOptions> DropDownListOptions
-        {
-            get
-            {
-                return _dropDownListOptions;
-            }
-        }
 
         /// <summary>
         /// Create a new 'select' control
@@ -32,46 +23,6 @@ namespace CodedUIAgilityPack.Controls
             }
 
             _controlName = controlName;
-            _dropDownListOptions = new List<ListOptions>();
-        }
-
-        /// <summary>
-        /// Add a item to the DropDownList.
-        /// </summary>
-        /// <param name="option">Object that represents a DropDownList Item, contains value and description</param>
-        public void AddItem(ListOptions option)
-        {
-            _dropDownListOptions.Add(option);
-        }
-
-        /// <summary>
-        /// Add a item to the DropDownList.
-        /// </summary>
-        /// <param name="value">Value</param>
-        /// <param name="description">Description</param>
-        public void AddItem(string value, string description)
-        {
-            _dropDownListOptions.Add(new ListOptions(value, description));
-        }
-
-        /// <summary>
-        /// Remove all DropDownList items.
-        /// </summary>
-        public void Clear()
-        {
-            _dropDownListOptions = new List<ListOptions>();
-        }
-
-        /// <summary>
-        /// Select one of the DropDownList options. This method will execute a click on the DropDownList.
-        /// </summary>
-        /// <param name="dropDownItem">Object that represents a DropDownList Option, contains value and description</param>
-        public void Select(ListOptions dropDownItem)
-        {
-            if (!_dropDownListOptions.Contains(dropDownItem))
-                throw new Exception("DropDownList item not found!");
-
-            Select(dropDownItem.Value);
         }
 
         /// <summary>
@@ -80,13 +31,9 @@ namespace CodedUIAgilityPack.Controls
         /// <param name="dropDownValue">DropDown value</param>
         public void Select(string dropDownValue)
         {
-            if (_dropDownListOptions.Find(x => x.Value == dropDownValue) == null)
-                throw new Exception("DropDownList item not found!");
-
             HtmlComboBox dropDown = LoadPageControls.GetComboboxByID(Browse.BrowserWindow, _controlName);
-            UITestControlCollection items = dropDown.Items;
 
-            foreach (HtmlListItem item in items)
+            foreach (HtmlListItem item in dropDown.Items)
             {
                 if (item.ValueAttribute == dropDownValue)
                 {
@@ -97,25 +44,48 @@ namespace CodedUIAgilityPack.Controls
         }
 
         /// <summary>
-        /// Return the selected RadioButton item. 
+        /// Get the selected value. 
         /// </summary>
         /// <returns></returns>
-        public ListOptions SelectedItem()
+        public string SelectedValue
         {
-            HtmlComboBox dropDown = LoadPageControls.GetComboboxByID(Browse.BrowserWindow, _controlName);
-            return _dropDownListOptions.SingleOrDefault(d => d.Description == dropDown.SelectedItem.ToString());
+            get
+            {
+                HtmlComboBox dropDown = LoadPageControls.GetComboboxByID(Browse.BrowserWindow, _controlName);
+                return ((HtmlListItem)dropDown.Items[dropDown.SelectedIndex]).ValueAttribute;
+            }
         }
 
         /// <summary>
-        /// Return the Css class name
+        /// Get the selected item. 
         /// </summary>
         /// <returns></returns>
-        public string GetCssClassName()
+        public ListOptions SelectedItem
         {
-            HtmlComboBox dropDown = LoadPageControls.GetComboboxByID(Browse.BrowserWindow, _controlName);
-            return dropDown.Class;
+            get
+            {
+                HtmlComboBox dropDown = LoadPageControls.GetComboboxByID(Browse.BrowserWindow, _controlName);
+                HtmlListItem item = (HtmlListItem)dropDown.Items[dropDown.SelectedIndex];
+                return new ListOptions(item.ValueAttribute, item.InnerText);
+            }
         }
 
+        /// <summary>
+        /// Get the Css class name
+        /// </summary>
+        /// <returns></returns>
+        public string CssClassName
+        {
+            get
+            {
+                HtmlComboBox dropDown = LoadPageControls.GetComboboxByID(Browse.BrowserWindow, _controlName);
+                return dropDown.Class;
+            }
+        }
+
+        /// <summary>
+        /// Get the number of Items
+        /// </summary>
         public int NumberOfItems
         {
             get
@@ -123,6 +93,18 @@ namespace CodedUIAgilityPack.Controls
                 HtmlComboBox dropDown = LoadPageControls.GetComboboxByID(Browse.BrowserWindow, _controlName);
                 return dropDown.GetChildren().Count;
             }
+        }
+
+        /// <summary>
+        /// Return all DropDownList items
+        /// </summary>
+        /// <returns></returns>
+        public List<ListOptions> GetChildren()
+        {
+            HtmlComboBox dropDown = LoadPageControls.GetComboboxByID(Browse.BrowserWindow, _controlName);
+            UITestControlCollection collectionItems = dropDown.GetChildren();
+
+            return collectionItems.Select(item => new ListOptions(((HtmlListItem)item).ValueAttribute, ((HtmlListItem)item).InnerText)).ToList();
         }
 
         /// <summary>

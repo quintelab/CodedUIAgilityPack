@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UITesting;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Configuration;
 
 namespace CodedUIAgilityPack.Demo
 {
@@ -15,14 +16,9 @@ namespace CodedUIAgilityPack.Demo
         {
             Playback.PlaybackSettings.LoggerOverrideState = HtmlLoggerState.AllActionSnapshot;
             Playback.PlaybackSettings.DelayBetweenActions = 0;
-            Browse.BrowserWindow = BrowserWindow.Launch(new Uri("http://localhost/CodedUIAgilityPack.Web/DropDownList"));
+            Browse.BrowserWindow = BrowserWindow.Launch(new Uri($"{ConfigurationManager.AppSettings["DefaultUrl"]}/DropDownList"));
 
             myDropDownList = new DropDownListControl("companies");
-            myDropDownList.AddItem("", "Select an item");
-            myDropDownList.AddItem("volvo", "Volvo");
-            myDropDownList.AddItem("saab", "Saab");
-            myDropDownList.AddItem("mercedes", "Mercedes");
-            myDropDownList.AddItem("audi", "Audi");
         }
 
         [TestCleanup]
@@ -33,29 +29,26 @@ namespace CodedUIAgilityPack.Demo
         }
 
         [TestMethod]
-        public void DropDownList_Should_Select_Audi_Item()
-        {
-            myDropDownList.Select(myDropDownList.DropDownListOptions[4]);
-
-            ListOptions option = myDropDownList.SelectedItem();
-
-            Assert.AreEqual("audi", option.Value);
-        }
-
-        [TestMethod]
-        public void DropDownList_Should_Select_Saab_Item()
+        public void DropDownList_Should_Select_Value_Saab()
         {
             myDropDownList.Select("saab");
 
-            ListOptions option = myDropDownList.SelectedItem();
+            Assert.AreEqual("saab", myDropDownList.SelectedValue);
+        }
 
-            Assert.AreEqual("saab", option.Value);
+        [TestMethod]
+        public void DropDownList_Should_Select_Item_Audi()
+        {
+            myDropDownList.Select("audi");
+
+            Assert.AreEqual("audi", myDropDownList.SelectedItem.Value);
+            Assert.AreEqual("Audi", myDropDownList.SelectedItem.Description);
         }
 
         [TestMethod]
         public void DropDownList_CssClass_Should_Be_Form_Control()
         {
-            Assert.AreEqual("form-control", myDropDownList.GetCssClassName());
+            Assert.AreEqual("form-control", myDropDownList.CssClassName);
         }
 
         [TestMethod]
