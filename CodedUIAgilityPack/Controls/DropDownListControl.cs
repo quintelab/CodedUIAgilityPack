@@ -7,6 +7,9 @@ using System.Linq;
 
 namespace CodedUIAgilityPack.Controls
 {
+    /// <summary>
+    /// Class representing DropDownList control
+    /// </summary>
     public class DropDownListControl : IDropDownListControls
     {
         private string _controlName;

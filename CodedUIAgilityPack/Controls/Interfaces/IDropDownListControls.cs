@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace CodedUIAgilityPack.Controls.Interfaces
 {
+    /// <summary>
+    /// Interface representing DropDownList control
+    /// </summary>
     public interface IDropDownListControls
     {
         /// <summary>

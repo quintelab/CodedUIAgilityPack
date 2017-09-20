@@ -5,6 +5,9 @@ using System;
 
 namespace CodedUIAgilityPack.Controls
 {
+    /// <summary>
+    /// Class representing Button control
+    /// </summary>
     public class ButtonControl : IButtonControls
     {
         private string _controlName;
@@ -24,7 +27,7 @@ namespace CodedUIAgilityPack.Controls
         }
 
         /// <summary>
-        /// Click on the button
+        /// Mouse click on the button
         /// </summary>
         public void Click()
         {
@@ -32,23 +35,29 @@ namespace CodedUIAgilityPack.Controls
         }
 
         /// <summary>
-        /// Return the Css class name
+        /// Return the css class name
         /// </summary>
-        /// <returns></returns>
-        public string GetCssClassName()
+        /// <returns>Return string</returns>
+        public string GetCssClassName
         {
-            HtmlButton control = LoadPageControls.GetButtonByID(Browse.BrowserWindow, _controlName);
-            return control.Class;
+            get
+            {
+                HtmlButton control = LoadPageControls.GetButtonByID(Browse.BrowserWindow, _controlName);
+                return control.Class;
+            }
         }
 
         /// <summary>
-        /// Return true if button is Enabled
+        /// Return enabled property
         /// </summary>
-        /// <returns></returns>
-        public bool IsEnabled()
+        /// <returns>Boolean</returns>
+        public bool IsEnabled
         {
-            UITestControl control = LoadPageControls.GetControlByID(Browse.BrowserWindow, _controlName);
-            return control.Enabled;
+            get
+            {
+                UITestControl control = LoadPageControls.GetControlByID(Browse.BrowserWindow, _controlName);
+                return control.Enabled;
+            }
         }
 
         /// <summary>

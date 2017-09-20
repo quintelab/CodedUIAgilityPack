@@ -6,6 +6,9 @@ using System.Collections.Generic;
 
 namespace CodedUIAgilityPack.Controls
 {
+    /// <summary>
+    /// Class representing RadioButton control
+    /// </summary>
     public class RadioButtonControl : IRadioButtonControls
     {
         private string _controlName;
@@ -95,7 +98,7 @@ namespace CodedUIAgilityPack.Controls
         /// Return the selected RadioButton item. 
         /// Throw an Exception if there is no item selected.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>RadioButton item</returns>
         public ListOptions SelectedItem()
         {
             foreach (var item in _radioButtonOptions)

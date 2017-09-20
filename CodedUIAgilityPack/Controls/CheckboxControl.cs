@@ -6,6 +6,9 @@ using System;
 
 namespace CodedUIAgilityPack.Controls
 {
+    /// <summary>
+    /// Class representing Checkbox control
+    /// </summary>
     public class CheckboxControl : ICheckboxControls
     {
         private string _controlName;
@@ -25,23 +28,27 @@ namespace CodedUIAgilityPack.Controls
         }
 
         /// <summary>
-        /// Return true if checkbox is checked
+        /// Return if checkbox is checked
         /// </summary>
-        /// <returns></returns>
-        public bool IsChecked()
+        public bool IsChecked
         {
-            UITestControl control = LoadPageControls.GetControlByID(Browse.BrowserWindow, _controlName);
-            return control.State.HasFlag(ControlStates.Checked);
+            get
+            {
+                UITestControl control = LoadPageControls.GetControlByID(Browse.BrowserWindow, _controlName);
+                return control.State.HasFlag(ControlStates.Checked);
+            }
         }
 
         /// <summary>
-        /// Return true if checbox is Enabled
+        /// Return enabled property
         /// </summary>
-        /// <returns></returns>
-        public bool IsEnabled()
+        public bool IsEnabled
         {
-            UITestControl control = LoadPageControls.GetControlByID(Browse.BrowserWindow, _controlName);
-            return control.Enabled;
+            get
+            {
+                UITestControl control = LoadPageControls.GetControlByID(Browse.BrowserWindow, _controlName);
+                return control.Enabled;
+            }
         }
 
         /// <summary>
@@ -67,13 +74,15 @@ namespace CodedUIAgilityPack.Controls
         }
 
         /// <summary>
-        /// Return the Css class name
+        /// Return the css class name
         /// </summary>
-        /// <returns></returns>
-        public string GetCssClassName()
+        public string GetCssClassName
         {
-            HtmlCheckBox control = LoadPageControls.GetCheckBoxByID(Browse.BrowserWindow, _controlName);
-            return control.Class;
+            get
+            {
+                HtmlCheckBox control = LoadPageControls.GetCheckBoxByID(Browse.BrowserWindow, _controlName);
+                return control.Class;
+            }
         }
 
         /// <summary>

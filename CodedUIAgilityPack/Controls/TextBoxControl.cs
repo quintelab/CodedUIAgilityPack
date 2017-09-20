@@ -4,6 +4,9 @@ using System;
 
 namespace CodedUIAgilityPack.Controls
 {
+    /// <summary>
+    /// Class representing TextBox control
+    /// </summary>
     public class TextBoxControl : ITextBoxControls
     {
         private string _controlName;
@@ -23,17 +26,19 @@ namespace CodedUIAgilityPack.Controls
         }
 
         /// <summary>
-        /// Return the Css class name
+        /// Get the Css class name
         /// </summary>
-        /// <returns></returns>
-        public string GetCssClassName()
+        public string GetCssClassName
         {
-            HtmlEdit control = LoadPageControls.GetTextBoxByID(Browse.BrowserWindow, _controlName);
-            return control.Class;
+            get
+            {
+                HtmlEdit control = LoadPageControls.GetTextBoxByID(Browse.BrowserWindow, _controlName);
+                return control.Class;
+            }
         }
 
         /// <summary>
-        /// Set the property Text
+        /// Set the TextBox value
         /// </summary>
         /// <param name="text">Value</param>
         public void SetText(string text)
@@ -43,19 +48,21 @@ namespace CodedUIAgilityPack.Controls
         }
 
         /// <summary>
-        /// Get the property Text
+        /// Return the TextBox value
         /// </summary>
-        /// <returns></returns>
-        public string GetText()
+        public string GetText
         {
-            HtmlEdit control = LoadPageControls.GetTextBoxByID(Browse.BrowserWindow, _controlName);
-            return control.Text;
+            get
+            {
+                HtmlEdit control = LoadPageControls.GetTextBoxByID(Browse.BrowserWindow, _controlName);
+                return control.Text;
+            }
         }
 
         /// <summary>
         /// Return the complete object
         /// </summary>
-        public HtmlEdit RadioButton
+        public HtmlEdit TextBox
         {
             get
             {

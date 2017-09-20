@@ -3,9 +3,9 @@ using Microsoft.VisualStudio.TestTools.UITesting.HtmlControls;
 
 namespace CodedUIAgilityPack
 {
-    public static class LoadPageControls
+    internal static class LoadPageControls
     {
-        public static UITestControl GetControlByID(BrowserWindow _browserWindow, string controlName)
+        internal static UITestControl GetControlByID(BrowserWindow _browserWindow, string controlName)
         {
             UITestControl control = new UITestControl(_browserWindow);
             control.TechnologyName = "Web";
@@ -14,7 +14,7 @@ namespace CodedUIAgilityPack
             return control;
         }
 
-        public static HtmlComboBox GetComboboxByID(BrowserWindow _browserWindow, string controlName)
+        internal static HtmlComboBox GetComboboxByID(BrowserWindow _browserWindow, string controlName)
         {
             HtmlComboBox box = new HtmlComboBox(_browserWindow);
             UITestControlCollection collection = box.FindMatchingControls();
@@ -27,7 +27,7 @@ namespace CodedUIAgilityPack
             return null;
         }
 
-        public static HtmlCheckBox GetCheckBoxByID(BrowserWindow _browserWindow, string controlName)
+        internal static HtmlCheckBox GetCheckBoxByID(BrowserWindow _browserWindow, string controlName)
         {
             HtmlCheckBox checkBox = new HtmlCheckBox(_browserWindow);
             UITestControlCollection collection = checkBox.FindMatchingControls();
@@ -40,7 +40,7 @@ namespace CodedUIAgilityPack
             return null;
         }
 
-        public static HtmlButton GetButtonByID(BrowserWindow _browserWindow, string controlName)
+        internal static HtmlButton GetButtonByID(BrowserWindow _browserWindow, string controlName)
         {
             HtmlButton button = new HtmlButton(_browserWindow);
             UITestControlCollection collection = button.FindMatchingControls();
@@ -53,7 +53,7 @@ namespace CodedUIAgilityPack
             return null;
         }
 
-        public static HtmlEdit GetTextBoxByID(BrowserWindow _browserWindow, string controlName)
+        internal static HtmlEdit GetTextBoxByID(BrowserWindow _browserWindow, string controlName)
         {
             HtmlEdit textBox = new HtmlEdit(_browserWindow);
             UITestControlCollection collection = textBox.FindMatchingControls();
