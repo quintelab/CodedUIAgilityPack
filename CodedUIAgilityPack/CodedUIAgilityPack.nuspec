@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>CodedUIAgilityPack</id>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <title>CodedUI Agility Pack</title>
     <authors>Bruno Quintella</authors>
     <owners>Bruno Quintella</owners>
@@ -13,7 +13,13 @@
       You can start and finish your tests only coding. CodedUI Agility Pack will help you to find your controls and manipulate their properties.
     </description>
     <releaseNotes>
-      It includes the basic controls: Button, CheckBox, DropDownList, RadioButton and TextBox.
+      1.0.0:
+      - It includes the basic controls: Button, CheckBox, DropDownList, RadioButton and TextBox.
+      1.0.1:
+      - Remove the methods responsable for add items manually to the DropDownList
+      - Add SelectedValue method to the DropDownList control
+      - Add SelectedItem method to the DropDownList control
+      - Add GetChildren method to the DropDownList control, it returns every DropDownList item
     </releaseNotes>
     <copyright>Copyright 2017</copyright>
     <tags>CodedUI Test</tags>
