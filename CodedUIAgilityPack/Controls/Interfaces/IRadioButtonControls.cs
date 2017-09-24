@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UITesting;
+﻿using Microsoft.VisualStudio.TestTools.UITesting.HtmlControls;
+using System.Collections.Generic;
 
 namespace CodedUIAgilityPack.Controls.Interfaces
 {
@@ -8,40 +9,36 @@ namespace CodedUIAgilityPack.Controls.Interfaces
     public interface IRadioButtonControls
     {
         /// <summary>
-        /// Add a RadioButton item.
+        /// Select one of the RadioButtom items, based on its ID. This method will execute a click on the radiobutton.
         /// </summary>
-        /// <param name="option">Object that represents a RadioButtom Item, contains name, value and description</param>
-        void AddItem(ListOptions option);
+        /// <param name="radioButtonItemName">RadioButton Item name, ID that is render on the browser</param>
+        void SelectById(string radioButtonItemName);
 
         /// <summary>
-        /// Add a RadioButton item.
+        /// Select one of the RadioButtom items, based on its Value. This method will execute a click on the radiobutton.
         /// </summary>
-        /// <param name="name">ID Property</param>
-        /// <param name="value">Value</param>
-        /// <param name="description">Description</param>
-        void AddItem(string name, string value, string description);
-
-        /// <summary>
-        /// Select one of the RadioButtom items. This method will execute a click on the radiobutton.
-        /// </summary>
-        /// <param name="radioButtonItem">Object that represents a RadioButtom Item, contains name, value and description</param>
-        void Select(ListOptions radioButtonItem);
-
-        /// <summary>
-        /// Select one of the RadioButtom items. This method will execute a click on the radiobutton.
-        /// </summary>
-        /// <param name="radioButtonName">RadioButton Item name, ID that is render on the browser</param>
-        void Select(string radioButtonName);
+        /// <param name="radioButtonItemName">RadioButton Item value</param>
+        void SelectByValue(string radioButtonItemName);
 
         /// <summary>
         /// Return the selected RadioButton item. 
         /// </summary>
-        /// <returns>RadioButton item</returns>
-        ListOptions SelectedItem();
+        ListOptions SelectedItem { get; }
+
+        /// <summary>
+        /// Get the number of items
+        /// </summary>
+        int NumberOfItems { get; }
+
+        /// <summary>
+        /// Return all RadioButton items
+        /// </summary>
+        /// <returns></returns>
+        List<ListOptions> GetChildren();
 
         /// <summary>
         /// Return the complete object
         /// </summary>
-        UITestControl RadioButton { get; }
+        HtmlRadioButton RadioButton { get; }
     }
 }

@@ -28,21 +28,21 @@ namespace CodedUIAgilityPack.Demo
         public void Button_Should_Be_Active()
         {
             ButtonControl button = new ButtonControl("active_button");
-            Assert.AreEqual(true, button.IsEnabled());
+            Assert.AreEqual(true, button.IsEnabled);
         }
 
         [TestMethod]
         public void Button_Should_Be_Disabled()
         {
             ButtonControl button = new ButtonControl("disabled_button");
-            Assert.AreEqual(true, button.IsEnabled());
+            Assert.AreEqual(true, button.IsEnabled);
         }
 
         [TestMethod]
         public void Button_Should_Have_CssClass_Info()
         {
             ButtonControl button = new ButtonControl("btn_info");
-            Assert.AreEqual(true, button.GetCssClassName().Contains("btn-info"));
+            Assert.AreEqual(true, button.GetCssClassName.Contains("btn-info"));
         }
 
         [TestMethod]
@@ -50,7 +50,7 @@ namespace CodedUIAgilityPack.Demo
         {
             ButtonControl button = new ButtonControl("btn_click");
             button.Click();
-            Assert.AreEqual(true, button.GetCssClassName().Contains("btn-success"));
+            Assert.AreEqual(true, button.GetCssClassName.Contains("btn-success"));
         }
     }
 }

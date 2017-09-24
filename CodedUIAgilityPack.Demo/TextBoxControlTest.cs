@@ -28,21 +28,21 @@ namespace CodedUIAgilityPack.Demo
         public void Textbox_Should_Have_CssClass_Form_Control()
         {
             TextBoxControl textbox = new TextBoxControl("textbox");
-            Assert.AreEqual("form-control", textbox.GetCssClassName());
+            Assert.AreEqual("form-control", textbox.GetCssClassName);
         }
 
         [TestMethod]
         public void Textbox_Should_Have_Text_Value()
         {
             TextBoxControl textbox = new TextBoxControl("textbox");
-            Assert.AreEqual("text here", textbox.GetText());
+            Assert.AreEqual("text here", textbox.GetText);
         }
 
         [TestMethod]
         public void Textbox_Should_Be_Empty()
         {
             TextBoxControl textbox = new TextBoxControl("empty-textbox");
-            Assert.AreEqual("", textbox.GetText());
+            Assert.AreEqual("", textbox.GetText);
         }
 
         [TestMethod]
@@ -50,7 +50,7 @@ namespace CodedUIAgilityPack.Demo
         {
             TextBoxControl textbox = new TextBoxControl("empty-textbox");
             textbox.SetText("unit test");
-            Assert.AreEqual("unit test", textbox.GetText());
+            Assert.AreEqual("unit test", textbox.GetText);
         }
     }
 }

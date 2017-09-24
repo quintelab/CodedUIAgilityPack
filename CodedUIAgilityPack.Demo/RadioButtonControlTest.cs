@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UITesting;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Collections.Generic;
 using System.Configuration;
 
 namespace CodedUIAgilityPack.Demo
@@ -19,9 +20,6 @@ namespace CodedUIAgilityPack.Demo
             Browse.BrowserWindow = BrowserWindow.Launch(new Uri($"{ConfigurationManager.AppSettings["DefaultUrl"]}/RadioButton"));
 
             myRadioButton = new RadioButtonControl("gender");
-            myRadioButton.AddItem("gender_male", "m", "Male");
-            myRadioButton.AddItem("gender_female", "f", "Female");
-            myRadioButton.AddItem("gender_other", "o", "Other");
         }
 
         [TestCleanup]
@@ -32,23 +30,47 @@ namespace CodedUIAgilityPack.Demo
         }
 
         [TestMethod]
-        public void RadioButton_Should_Select_Male_Option()
+        public void RadioButton_First_Item_Should_Be_Male()
         {
-            myRadioButton.Select(myRadioButton.RadioButtonItems[0]);
+            List<ListOptions> items = myRadioButton.GetChildren();
 
-            ListOptions option = myRadioButton.SelectedItem();
-
-            Assert.AreEqual("m", option.Value);
+            Assert.AreEqual("m", items[0].Value);
+            Assert.AreEqual("gender_male", items[0].Name);
         }
 
         [TestMethod]
-        public void RadioButton_Should_Select_Female_Option()
+        public void RadioButton_Second_Item_Should_Be_Female()
         {
-            myRadioButton.Select("gender_female");
+            List<ListOptions> items = myRadioButton.GetChildren();
 
-            ListOptions option = myRadioButton.SelectedItem();
+            Assert.AreEqual("f", items[1].Value);
+            Assert.AreEqual("gender_female", items[1].Name);
+        }
 
-            Assert.AreEqual("f", option.Value);
+        [TestMethod]
+        public void RadioButton_Should_Select_Male_Option()
+        {
+            myRadioButton.SelectById("gender_male");
+            ListOptions item = myRadioButton.SelectedItem;
+
+            Assert.AreEqual("m", item.Value);
+            Assert.AreEqual("gender_male", item.Name);
+        }
+
+        [TestMethod]
+        public void RadioButton_Should_Select_Other_Option()
+        {
+            myRadioButton.SelectByValue("o");
+            ListOptions item = myRadioButton.SelectedItem;
+
+            Assert.AreEqual("o", item.Value);
+            Assert.AreEqual("gender_other", item.Name);
+        }
+
+        [TestMethod]
+        public void RadioButton_Should_Contains_3_Items()
+        {
+            Assert.AreEqual(3, myRadioButton.NumberOfItems);
         }
     }
 }

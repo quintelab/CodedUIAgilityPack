@@ -31,7 +31,7 @@ namespace CodedUIAgilityPack.Controls
         /// </summary>
         public void Click()
         {
-            Mouse.Click(LoadPageControls.GetControlByID(Browse.BrowserWindow, _controlName));
+            Mouse.Click(LoadPageControls.GetButtonByID(Browse.BrowserWindow, _controlName));
         }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace CodedUIAgilityPack.Controls
         {
             get
             {
-                UITestControl control = LoadPageControls.GetControlByID(Browse.BrowserWindow, _controlName);
+                HtmlButton control = LoadPageControls.GetButtonByID(Browse.BrowserWindow, _controlName);
                 return control.Enabled;
             }
         }

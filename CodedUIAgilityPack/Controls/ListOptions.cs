@@ -1,11 +1,17 @@
 ﻿namespace CodedUIAgilityPack.Controls
 {
+    /// <summary>
+    /// Class representing RadioButton items and DropDownList items
+    /// </summary>
     public class ListOptions
     {
         private string _name;
         private string _value;
         private string _description;
 
+        /// <summary>
+        /// Item name (ID)
+        /// </summary>
         public string Name
         {
             get
@@ -18,6 +24,9 @@
             }
         }
 
+        /// <summary>
+        /// Item Vaue
+        /// </summary>
         public string Value
         {
             get
@@ -30,6 +39,9 @@
             }
         }
 
+        /// <summary>
+        /// Item text
+        /// </summary>
         public string Description
         {
             get

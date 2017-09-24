@@ -28,28 +28,28 @@ namespace CodedUIAgilityPack.Demo
         public void Checkbox_Should_Be_Checked()
         {
             CheckboxControl checkbox = new CheckboxControl("checkbox_checked");
-            Assert.AreEqual(true, checkbox.IsChecked());
+            Assert.AreEqual(true, checkbox.IsChecked);
         }
 
         [TestMethod]
         public void Checkbox_Should_Be_Unchecked()
         {
             CheckboxControl checkbox = new CheckboxControl("checkbox_unchecked");
-            Assert.AreEqual(false, checkbox.IsChecked());
+            Assert.AreEqual(false, checkbox.IsChecked);
         }
 
         [TestMethod]
         public void Checkbox_Should_Be_Enabled()
         {
             CheckboxControl checkbox = new CheckboxControl("checkbox_checked");
-            Assert.AreEqual(true, checkbox.IsEnabled());
+            Assert.AreEqual(true, checkbox.IsEnabled);
         }
 
         [TestMethod]
         public void Checkbox_Should_Be_Disabled()
         {
             CheckboxControl checkbox = new CheckboxControl("checkbox_disabled");
-            Assert.AreEqual(false, checkbox.IsEnabled());
+            Assert.AreEqual(false, checkbox.IsEnabled);
         }
 
         [TestMethod]
@@ -58,7 +58,7 @@ namespace CodedUIAgilityPack.Demo
             CheckboxControl checkbox = new CheckboxControl("checkbox_unchecked");
             checkbox.Check();
 
-            Assert.AreEqual(true, checkbox.IsChecked());
+            Assert.AreEqual(true, checkbox.IsChecked);
         }
 
         [TestMethod]
@@ -67,14 +67,14 @@ namespace CodedUIAgilityPack.Demo
             CheckboxControl checkbox = new CheckboxControl("checkbox_checked");
             checkbox.Uncheck();
 
-            Assert.AreEqual(false, checkbox.IsChecked());
+            Assert.AreEqual(false, checkbox.IsChecked);
         }
 
         [TestMethod]
         public void Checkbox_Should_Have_CssClass_Test()
         {
             CheckboxControl checkbox = new CheckboxControl("checkbox_unchecked");
-            Assert.AreEqual("test", checkbox.GetCssClassName());
+            Assert.AreEqual("test", checkbox.GetCssClassName);
         }
     }
 }

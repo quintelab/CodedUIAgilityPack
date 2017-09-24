@@ -1,8 +1,10 @@
 ﻿using CodedUIAgilityPack.Controls.Interfaces;
 using Microsoft.VisualStudio.TestTools.UITest.Extension;
 using Microsoft.VisualStudio.TestTools.UITesting;
+using Microsoft.VisualStudio.TestTools.UITesting.HtmlControls;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CodedUIAgilityPack.Controls
 {
@@ -12,14 +14,6 @@ namespace CodedUIAgilityPack.Controls
     public class RadioButtonControl : IRadioButtonControls
     {
         private string _controlName;
-        private List<ListOptions> _radioButtonOptions;
-        public List<ListOptions> RadioButtonItems
-        {
-            get
-            {
-                return _radioButtonOptions;
-            }
-        }
 
         /// <summary>
         /// Create a new RadioButton control
@@ -33,65 +27,44 @@ namespace CodedUIAgilityPack.Controls
             }
 
             _controlName = controlName;
-            _radioButtonOptions = new List<ListOptions>();
         }
 
         /// <summary>
-        /// Add a RadioButton item.
+        /// Select one of the RadioButtom items based on its ID. This method will execute a click on the radiobutton.
         /// </summary>
-        /// <param name="option">Object that represents a RadioButtom Item, contains name, value and description</param>
-        public void AddItem(ListOptions option)
+        /// <param name="radioButtonItemName">RadioButton Item name, ID that is render on the browser</param>
+        public void SelectById(string radioButtonItemName)
         {
-            if (string.IsNullOrEmpty(option.Name))
-                throw new Exception("Name is empty!");
-
-            _radioButtonOptions.Add(option);
+            foreach (HtmlControl item in GetRadioButtonItems)
+                if (item.Id == radioButtonItemName)
+                {
+                    Mouse.Click(item);
+                    break;
+                }
         }
 
         /// <summary>
-        /// Add a RadioButton item.
+        /// Select one of the RadioButtom items based on its Value. This method will execute a click on the radiobutton.
         /// </summary>
-        /// <param name="name">ID Property</param>
-        /// <param name="value">Value</param>
-        /// <param name="description">Description</param>
-        public void AddItem(string name, string value, string description)
+        /// <param name="radioButtonItemValue">RadioButton Item value</param>
+        public void SelectByValue(string radioButtonItemValue)
         {
-            if (string.IsNullOrEmpty(name))
-                throw new Exception("Name is empty!");
-
-            _radioButtonOptions.Add(new ListOptions(name, value, description));
+            foreach (HtmlControl item in GetRadioButtonItems)
+                if (item.ValueAttribute == radioButtonItemValue)
+                {
+                    Mouse.Click(item);
+                    break;
+                }
         }
 
         /// <summary>
-        /// Remove all RadioButton items.
+        /// Return all RadioButton items
         /// </summary>
-        public void Clear()
+        /// <returns></returns>
+        public List<ListOptions> GetChildren()
         {
-            _radioButtonOptions = new List<ListOptions>();
-        }
-
-        /// <summary>
-        /// Select one of the RadioButtom items. This method will execute a click on the radiobutton.
-        /// </summary>
-        /// <param name="radioButtonItem">Object that represents a RadioButtom Item, contains name, value and description</param>
-        public void Select(ListOptions radioButtonItem)
-        {
-            if (!_radioButtonOptions.Contains(radioButtonItem))
-                throw new Exception("Radio button item not found!");
-
-            Select(radioButtonItem.Name);
-        }
-
-        /// <summary>
-        /// Select one of the RadioButtom items. This method will execute a click on the radiobutton.
-        /// </summary>
-        /// <param name="radioButtonName">RadioButton Item name, ID that is render on the browser</param>
-        public void Select(string radioButtonName)
-        {
-            if (_radioButtonOptions.Find(x => x.Name == radioButtonName) == null)
-                throw new Exception("Radio button item not found!");
-
-            Mouse.Click(LoadPageControls.GetControlByID(Browse.BrowserWindow, radioButtonName));
+            return GetRadioButtonItems.Select(item => new ListOptions(((HtmlControl)item).Id,
+                ((HtmlControl)item).ValueAttribute, ((HtmlControl)item).InnerText)).ToList();
         }
 
         /// <summary>
@@ -99,27 +72,48 @@ namespace CodedUIAgilityPack.Controls
         /// Throw an Exception if there is no item selected.
         /// </summary>
         /// <returns>RadioButton item</returns>
-        public ListOptions SelectedItem()
+        public ListOptions SelectedItem
         {
-            foreach (var item in _radioButtonOptions)
+            get
             {
-                UITestControl control = LoadPageControls.GetControlByID(Browse.BrowserWindow, item.Name);
+                foreach (HtmlControl item in GetRadioButtonItems)
+                {
+                    if (item.State.HasFlag(ControlStates.Checked))
+                        return new ListOptions(item.Id, item.ValueAttribute, item.InnerText);
+                }
 
-                if (control.State.HasFlag(ControlStates.Checked))
-                    return item;
+                return null;
             }
-
-            throw new Exception("There is no RadioButton item selected.");
         }
 
         /// <summary>
         /// Return the complete object
         /// </summary>
-        public UITestControl RadioButton
+        public HtmlRadioButton RadioButton
         {
             get
             {
-                return LoadPageControls.GetControlByID(Browse.BrowserWindow, _controlName);
+                return LoadPageControls.GetRadioButtonByID(Browse.BrowserWindow, _controlName);
+            }
+        }
+
+        /// <summary>
+        /// Get the number of items
+        /// </summary>
+        public int NumberOfItems
+        {
+            get
+            {
+                return GetChildren().Count;
+            }
+        }
+
+        private UITestControlCollection GetRadioButtonItems
+        {
+            get
+            {
+                HtmlRadioButton radioButton = LoadPageControls.GetRadioButtonByID(Browse.BrowserWindow, _controlName);
+                return radioButton.Group;
             }
         }
     }

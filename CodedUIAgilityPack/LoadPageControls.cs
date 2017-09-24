@@ -5,15 +5,6 @@ namespace CodedUIAgilityPack
 {
     internal static class LoadPageControls
     {
-        internal static UITestControl GetControlByID(BrowserWindow _browserWindow, string controlName)
-        {
-            UITestControl control = new UITestControl(_browserWindow);
-            control.TechnologyName = "Web";
-            control.SearchProperties.Add(HtmlControl.PropertyNames.Id, controlName);
-
-            return control;
-        }
-
         internal static HtmlComboBox GetComboboxByID(BrowserWindow _browserWindow, string controlName)
         {
             HtmlComboBox box = new HtmlComboBox(_browserWindow);
@@ -62,6 +53,19 @@ namespace CodedUIAgilityPack
                 foreach (HtmlEdit text in collection)
                     if (text.Id == controlName || text.Name == controlName)
                         return text;
+
+            return null;
+        }
+
+        internal static HtmlRadioButton GetRadioButtonByID(BrowserWindow _browserWindow, string controlName)
+        {
+            HtmlRadioButton radio = new HtmlRadioButton(_browserWindow);
+            UITestControlCollection collection = radio.FindMatchingControls();
+
+            if (collection.Count > 0)
+                foreach (HtmlRadioButton radioButton in collection)
+                    if (radioButton.Id == controlName || radioButton.Name == controlName)
+                        return radioButton;
 
             return null;
         }
