@@ -11,22 +11,18 @@ namespace CodedUIAgilityPack.Controls
     /// <summary>
     /// Class representing RadioButton control
     /// </summary>
-    public class RadioButtonControl : IRadioButtonControls
+    public class RadioButtonControl : BaseControl, IRadioButtonControls
     {
-        private string _controlName;
-
         /// <summary>
         /// Create a new RadioButton control
         /// </summary>
         /// <param name="controlName">ID Property (ID that is render on the browser)</param>
-        public RadioButtonControl(string controlName)
+        public RadioButtonControl(string controlName) : base(controlName)
         {
-            if (Browse.BrowserWindow == null)
-            {
-                throw new Exception("BrowserWindow is null!");
-            }
+            RadioButton = LoadPageControls.GetRadioButtonByID(Browse.BrowserWindow, controlName);
 
-            _controlName = controlName;
+            if (RadioButton == null)
+                throw new Exception("RadioButton not found!");
         }
 
         /// <summary>
@@ -91,10 +87,7 @@ namespace CodedUIAgilityPack.Controls
         /// </summary>
         public HtmlRadioButton RadioButton
         {
-            get
-            {
-                return LoadPageControls.GetRadioButtonByID(Browse.BrowserWindow, _controlName);
-            }
+            get; private set;
         }
 
         /// <summary>
@@ -112,8 +105,7 @@ namespace CodedUIAgilityPack.Controls
         {
             get
             {
-                HtmlRadioButton radioButton = LoadPageControls.GetRadioButtonByID(Browse.BrowserWindow, _controlName);
-                return radioButton.Group;
+                return RadioButton.Group;
             }
         }
     }
