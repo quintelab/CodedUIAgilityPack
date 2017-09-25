@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Browse.cs" />
+    <Compile Include="Controls\BaseControl.cs" />
     <Compile Include="Controls\ButtonControl.cs" />
     <Compile Include="Controls\CheckboxControl.cs" />
     <Compile Include="Controls\DropDownListControl.cs" />

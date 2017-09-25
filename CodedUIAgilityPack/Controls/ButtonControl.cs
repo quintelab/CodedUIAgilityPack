@@ -8,22 +8,18 @@ namespace CodedUIAgilityPack.Controls
     /// <summary>
     /// Class representing Button control
     /// </summary>
-    public class ButtonControl : IButtonControls
+    public class ButtonControl : BaseControl, IButtonControls
     {
-        private string _controlName;
-
         /// <summary>
         /// Create a new button control
         /// </summary>
         /// <param name="controlName">ID Property (ID that is render on the browser)</param>
-        public ButtonControl(string controlName)
+        public ButtonControl(string controlName) : base(controlName)
         {
-            if (Browse.BrowserWindow == null)
-            {
-                throw new Exception("BrowserWindow is null!");
-            }
+            Button = LoadPageControls.GetButtonByID(Browse.BrowserWindow, controlName);
 
-            _controlName = controlName;
+            if (Button == null)
+                throw new Exception("Button not found!");
         }
 
         /// <summary>
@@ -31,7 +27,7 @@ namespace CodedUIAgilityPack.Controls
         /// </summary>
         public void Click()
         {
-            Mouse.Click(LoadPageControls.GetButtonByID(Browse.BrowserWindow, _controlName));
+            Mouse.Click(Button);
         }
 
         /// <summary>
@@ -42,8 +38,7 @@ namespace CodedUIAgilityPack.Controls
         {
             get
             {
-                HtmlButton control = LoadPageControls.GetButtonByID(Browse.BrowserWindow, _controlName);
-                return control.Class;
+                return Button.Class;
             }
         }
 
@@ -55,8 +50,7 @@ namespace CodedUIAgilityPack.Controls
         {
             get
             {
-                HtmlButton control = LoadPageControls.GetButtonByID(Browse.BrowserWindow, _controlName);
-                return control.Enabled;
+                return Button.Enabled;
             }
         }
 
@@ -65,10 +59,7 @@ namespace CodedUIAgilityPack.Controls
         /// </summary>
         public HtmlButton Button
         {
-            get
-            {
-                return LoadPageControls.GetButtonByID(Browse.BrowserWindow, _controlName);
-            }
+            get; private set;
         }
     }
 }
