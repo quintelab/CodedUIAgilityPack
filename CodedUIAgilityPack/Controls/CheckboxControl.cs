@@ -9,22 +9,18 @@ namespace CodedUIAgilityPack.Controls
     /// <summary>
     /// Class representing Checkbox control
     /// </summary>
-    public class CheckboxControl : ICheckboxControls
+    public class CheckboxControl : BaseControl, ICheckboxControls
     {
-        private string _controlName;
-
         /// <summary>
         /// Create a new checkbox control
         /// </summary>
         /// <param name="controlName">ID Property (ID that is render on the browser)</param>
-        public CheckboxControl(string controlName)
+        public CheckboxControl(string controlName) : base(controlName)
         {
-            if (Browse.BrowserWindow == null)
-            {
-                throw new Exception("BrowserWindow is null!");
-            }
+            CheckBox = LoadPageControls.GetCheckBoxByID(Browse.BrowserWindow, controlName);
 
-            _controlName = controlName;
+            if (CheckBox == null)
+                throw new Exception("CheckBox not found!");
         }
 
         /// <summary>
@@ -34,8 +30,7 @@ namespace CodedUIAgilityPack.Controls
         {
             get
             {
-                HtmlCheckBox control = LoadPageControls.GetCheckBoxByID(Browse.BrowserWindow, _controlName);
-                return control.State.HasFlag(ControlStates.Checked);
+                return CheckBox.State.HasFlag(ControlStates.Checked);
             }
         }
 
@@ -46,8 +41,7 @@ namespace CodedUIAgilityPack.Controls
         {
             get
             {
-                HtmlCheckBox control = LoadPageControls.GetCheckBoxByID(Browse.BrowserWindow, _controlName);
-                return control.Enabled;
+                return CheckBox.Enabled;
             }
         }
 
@@ -56,10 +50,8 @@ namespace CodedUIAgilityPack.Controls
         /// </summary>
         public void Check()
         {
-            HtmlCheckBox control = LoadPageControls.GetCheckBoxByID(Browse.BrowserWindow, _controlName);
-
-            if (!control.State.HasFlag(ControlStates.Checked))
-                Mouse.Click(control);
+            if (!CheckBox.State.HasFlag(ControlStates.Checked))
+                Mouse.Click(CheckBox);
         }
 
         /// <summary>
@@ -67,10 +59,8 @@ namespace CodedUIAgilityPack.Controls
         /// </summary>
         public void Uncheck()
         {
-            HtmlCheckBox control = LoadPageControls.GetCheckBoxByID(Browse.BrowserWindow, _controlName);
-
-            if (control.State.HasFlag(ControlStates.Checked))
-                Mouse.Click(control);
+            if (CheckBox.State.HasFlag(ControlStates.Checked))
+                Mouse.Click(CheckBox);
         }
 
         /// <summary>
@@ -80,8 +70,7 @@ namespace CodedUIAgilityPack.Controls
         {
             get
             {
-                HtmlCheckBox control = LoadPageControls.GetCheckBoxByID(Browse.BrowserWindow, _controlName);
-                return control.Class;
+                return CheckBox.Class;
             }
         }
 
@@ -90,10 +79,7 @@ namespace CodedUIAgilityPack.Controls
         /// </summary>
         public HtmlCheckBox CheckBox
         {
-            get
-            {
-                return LoadPageControls.GetCheckBoxByID(Browse.BrowserWindow, _controlName);
-            }
+            get; private set;
         }
     }
 }
