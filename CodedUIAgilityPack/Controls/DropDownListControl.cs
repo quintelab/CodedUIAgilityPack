@@ -10,22 +10,18 @@ namespace CodedUIAgilityPack.Controls
     /// <summary>
     /// Class representing DropDownList control
     /// </summary>
-    public class DropDownListControl : IDropDownListControls
+    public class DropDownListControl : BaseControl, IDropDownListControls
     {
-        private string _controlName;
-
         /// <summary>
         /// Create a new 'select' control
         /// </summary>
         /// <param name="controlName">ID Property (ID that is render on the browser)</param>
-        public DropDownListControl(string controlName)
+        public DropDownListControl(string controlName) : base(controlName)
         {
-            if (Browse.BrowserWindow == null)
-            {
-                throw new Exception("BrowserWindow is null!");
-            }
+            DropDownList = LoadPageControls.GetComboboxByID(Browse.BrowserWindow, controlName);
 
-            _controlName = controlName;
+            if (DropDownList == null)
+                throw new Exception("DropDownList not found!");
         }
 
         /// <summary>
@@ -34,13 +30,11 @@ namespace CodedUIAgilityPack.Controls
         /// <param name="dropDownValue">DropDown value</param>
         public void Select(string dropDownValue)
         {
-            HtmlComboBox dropDown = LoadPageControls.GetComboboxByID(Browse.BrowserWindow, _controlName);
-
-            foreach (HtmlListItem item in dropDown.Items)
+            foreach (HtmlListItem item in DropDownList.Items)
             {
                 if (item.ValueAttribute == dropDownValue)
                 {
-                    dropDown.SelectedItem = item.InnerText;
+                    DropDownList.SelectedItem = item.InnerText;
                     break;
                 }
             }
@@ -54,8 +48,7 @@ namespace CodedUIAgilityPack.Controls
         {
             get
             {
-                HtmlComboBox dropDown = LoadPageControls.GetComboboxByID(Browse.BrowserWindow, _controlName);
-                return ((HtmlListItem)dropDown.Items[dropDown.SelectedIndex]).ValueAttribute;
+                return ((HtmlListItem)DropDownList.Items[DropDownList.SelectedIndex]).ValueAttribute;
             }
         }
 
@@ -67,8 +60,7 @@ namespace CodedUIAgilityPack.Controls
         {
             get
             {
-                HtmlComboBox dropDown = LoadPageControls.GetComboboxByID(Browse.BrowserWindow, _controlName);
-                HtmlListItem item = (HtmlListItem)dropDown.Items[dropDown.SelectedIndex];
+                HtmlListItem item = (HtmlListItem)DropDownList.Items[DropDownList.SelectedIndex];
                 return new ListOptions(item.ValueAttribute, item.InnerText);
             }
         }
@@ -81,8 +73,7 @@ namespace CodedUIAgilityPack.Controls
         {
             get
             {
-                HtmlComboBox dropDown = LoadPageControls.GetComboboxByID(Browse.BrowserWindow, _controlName);
-                return dropDown.Class;
+                return DropDownList.Class;
             }
         }
 
@@ -93,8 +84,7 @@ namespace CodedUIAgilityPack.Controls
         {
             get
             {
-                HtmlComboBox dropDown = LoadPageControls.GetComboboxByID(Browse.BrowserWindow, _controlName);
-                return dropDown.GetChildren().Count;
+                return DropDownList.GetChildren().Count;
             }
         }
 
@@ -104,8 +94,7 @@ namespace CodedUIAgilityPack.Controls
         /// <returns></returns>
         public List<ListOptions> GetChildren()
         {
-            HtmlComboBox dropDown = LoadPageControls.GetComboboxByID(Browse.BrowserWindow, _controlName);
-            UITestControlCollection collectionItems = dropDown.GetChildren();
+            UITestControlCollection collectionItems = DropDownList.GetChildren();
 
             return collectionItems.Select(item => new ListOptions(((HtmlListItem)item).ValueAttribute, ((HtmlListItem)item).InnerText)).ToList();
         }
@@ -115,10 +104,7 @@ namespace CodedUIAgilityPack.Controls
         /// </summary>
         public HtmlComboBox DropDownList
         {
-            get
-            {
-                return LoadPageControls.GetComboboxByID(Browse.BrowserWindow, _controlName);
-            }
+            get; private set;
         }
     }
 }
