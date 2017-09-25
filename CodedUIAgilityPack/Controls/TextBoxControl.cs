@@ -7,22 +7,18 @@ namespace CodedUIAgilityPack.Controls
     /// <summary>
     /// Class representing TextBox control
     /// </summary>
-    public class TextBoxControl : ITextBoxControls
+    public class TextBoxControl : BaseControl, ITextBoxControls
     {
-        private string _controlName;
-
         /// <summary>
         /// Create a new textbox control
         /// </summary>
         /// <param name="controlName"></param>
-        public TextBoxControl(string controlName)
+        public TextBoxControl(string controlName) : base(controlName)
         {
-            if (Browse.BrowserWindow == null)
-            {
-                throw new Exception("BrowserWindow is null!");
-            }
+            TextBox = LoadPageControls.GetTextBoxByID(Browse.BrowserWindow, controlName);
 
-            _controlName = controlName;
+            if (TextBox == null)
+                throw new Exception("TextBox not found!");
         }
 
         /// <summary>
@@ -32,8 +28,7 @@ namespace CodedUIAgilityPack.Controls
         {
             get
             {
-                HtmlEdit control = LoadPageControls.GetTextBoxByID(Browse.BrowserWindow, _controlName);
-                return control.Class;
+                return TextBox.Class;
             }
         }
 
@@ -43,8 +38,7 @@ namespace CodedUIAgilityPack.Controls
         /// <param name="text">Value</param>
         public void SetText(string text)
         {
-            HtmlEdit control = LoadPageControls.GetTextBoxByID(Browse.BrowserWindow, _controlName);
-            control.Text = text;
+            TextBox.Text = text;
         }
 
         /// <summary>
@@ -54,8 +48,7 @@ namespace CodedUIAgilityPack.Controls
         {
             get
             {
-                HtmlEdit control = LoadPageControls.GetTextBoxByID(Browse.BrowserWindow, _controlName);
-                return control.Text;
+                return TextBox.Text;
             }
         }
 
@@ -64,10 +57,7 @@ namespace CodedUIAgilityPack.Controls
         /// </summary>
         public HtmlEdit TextBox
         {
-            get
-            {
-                return LoadPageControls.GetTextBoxByID(Browse.BrowserWindow, _controlName);
-            }
+            get; private set;
         }
     }
 }
