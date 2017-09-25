@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>CodedUIAgilityPack</id>
-    <version>1.0.3</version>
+    <version>1.0.4</version>
     <title>CodedUI Agility Pack</title>
     <authors>Bruno Quintella</authors>
     <owners>Bruno Quintella</owners>
@@ -28,6 +28,8 @@
       - Added the SelectByValue  method to the RadioButton control
       - Added the GetChildren  method to the RadioButton control, it returns every radiobutton items
       - Added the NumberOfItems property to the RadioButton control, it returns the number of radiobutton items
+      1.0.4:
+      - Performance improvement.
     </releaseNotes>
     <copyright>Copyright 2017</copyright>
     <tags>CodedUI Test</tags>
