@@ -5,7 +5,7 @@ namespace CodedUIAgilityPack.Controls
     /// <summary>
     /// Base control
     /// </summary>
-    public class BaseControl
+    public abstract class BaseControl
     {
         internal BaseControl(string controlName)
         {

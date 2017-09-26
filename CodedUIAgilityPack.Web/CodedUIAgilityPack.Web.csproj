@@ -146,7 +146,9 @@
     <Compile Include="Controllers\CheckBoxController.cs" />
     <Compile Include="Controllers\DropDownListController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LabelController.cs" />
     <Compile Include="Controllers\RadioButtonController.cs" />
+    <Compile Include="Controllers\SpanController.cs" />
     <Compile Include="Controllers\TextBoxController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -195,6 +197,8 @@
     <Content Include="Views\CheckBox\Index.cshtml" />
     <Content Include="Views\TextBox\Index.cshtml" />
     <Content Include="Views\Button\Index.cshtml" />
+    <Content Include="Views\Label\Index.cshtml" />
+    <Content Include="Views\Span\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

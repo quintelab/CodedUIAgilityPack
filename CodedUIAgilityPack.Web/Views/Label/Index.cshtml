@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "Label";
+}
+
+<h2>Label Example</h2>
+
+<label id="simple-label" class="label label-default">I am a simple label.</label>
+<br /><br />
+<label id="click-label">Click me.</label>
+
+@section scripts {
+
+    <script>
+
+        $("#click-label").click(function () {
+            $(this).addClass("label label-success");
+        });
+
+    </script>
+
+}

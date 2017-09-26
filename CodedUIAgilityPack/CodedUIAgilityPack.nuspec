@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>CodedUIAgilityPack</id>
-    <version>1.0.4</version>
+    <version>1.0.5</version>
     <title>CodedUI Agility Pack</title>
     <authors>Bruno Quintella</authors>
     <owners>Bruno Quintella</owners>
@@ -30,9 +30,12 @@
       - Added the NumberOfItems property to the RadioButton control, it returns the number of radiobutton items
       1.0.4:
       - Performance improvement.
+      1.0.5:
+      - Created new control: Label - it contains the properties GetText and GetCssClassName and also the event Click.
+      - Created new control: Span - it contains the properties GetText and GetCssClassName and also the event Click.
     </releaseNotes>
     <copyright>Copyright 2017</copyright>
-    <tags>CodedUI Test</tags>
+    <tags>CodedUI Test Web Html ASP.NET</tags>
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="Microsoft.VisualStudio.TestTools.UITesting.dll"  />
       <frameworkAssembly assemblyName="Microsoft.VisualStudio.TestTools.UITest.Extension.dll"  />

@@ -56,9 +56,13 @@
     <Compile Include="Controls\Interfaces\IButtonControls.cs" />
     <Compile Include="Controls\Interfaces\ICheckboxControls.cs" />
     <Compile Include="Controls\Interfaces\IDropDownListControls.cs" />
+    <Compile Include="Controls\Interfaces\ILabelControls.cs" />
     <Compile Include="Controls\Interfaces\IRadioButtonControls.cs" />
+    <Compile Include="Controls\Interfaces\ISpanControls.cs" />
     <Compile Include="Controls\Interfaces\ITextBoxControls.cs" />
+    <Compile Include="Controls\LabelControl.cs" />
     <Compile Include="Controls\ListOptions.cs" />
+    <Compile Include="Controls\SpanControl.cs" />
     <Compile Include="Controls\TextBoxControl.cs" />
     <Compile Include="LoadPageControls.cs" />
     <Compile Include="Controls\RadioButtonControl.cs" />
