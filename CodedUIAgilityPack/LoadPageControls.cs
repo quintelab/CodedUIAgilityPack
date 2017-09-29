@@ -5,93 +5,112 @@ namespace CodedUIAgilityPack
 {
     internal static class LoadPageControls
     {
+        private static HtmlControl GetHtmlControlsByIdOrName(BrowserWindow _browserWindow, string controlID)
+        {
+            HtmlControl control = new HtmlControl(_browserWindow);
+            control.SearchProperties["Id"] = controlID;
+            control.SearchProperties["Name"] = controlID;
+
+            if (control.TryFind())
+                return control;
+
+            return null;
+        }
+
         internal static HtmlComboBox GetComboboxByID(BrowserWindow _browserWindow, string controlName)
         {
-            HtmlComboBox controls = new HtmlComboBox(_browserWindow);
-            UITestControlCollection collection = controls.FindMatchingControls();
+            HtmlControl genericControl = GetHtmlControlsByIdOrName(_browserWindow, controlName);
+            HtmlComboBox htmlComboBox = new HtmlComboBox();
 
-            if (collection.Count > 0)
-                foreach (HtmlComboBox comboBox in collection)
-                    if (comboBox.Id == controlName || comboBox.Name == controlName)
-                        return comboBox;
+            if (genericControl != null)
+            {
+                htmlComboBox.CopyFrom(genericControl);
+                return htmlComboBox;
+            }
 
             return null;
         }
 
         internal static HtmlCheckBox GetCheckBoxByID(BrowserWindow _browserWindow, string controlName)
         {
-            HtmlCheckBox controls = new HtmlCheckBox(_browserWindow);
-            UITestControlCollection collection = controls.FindMatchingControls();
+            HtmlControl genericControl = GetHtmlControlsByIdOrName(_browserWindow, controlName);
+            HtmlCheckBox htmlCheckBox = new HtmlCheckBox();
 
-            if (collection.Count > 0)
-                foreach (HtmlCheckBox checkBox in collection)
-                    if (checkBox.Id == controlName || checkBox.Name == controlName)
-                        return checkBox;
+            if (genericControl != null)
+            {
+                htmlCheckBox.CopyFrom(genericControl);
+                return htmlCheckBox;
+            }
 
             return null;
         }
 
         internal static HtmlButton GetButtonByID(BrowserWindow _browserWindow, string controlName)
         {
-            HtmlButton controls = new HtmlButton(_browserWindow);
-            UITestControlCollection collection = controls.FindMatchingControls();
+            HtmlControl genericControl = GetHtmlControlsByIdOrName(_browserWindow, controlName);
+            HtmlButton htmlButton = new HtmlButton();
 
-            if (collection.Count > 0)
-                foreach (HtmlButton button in collection)
-                    if (button.Id == controlName || button.Name == controlName)
-                        return button;
+            if (genericControl != null)
+            {
+                htmlButton.CopyFrom(genericControl);
+                return htmlButton;
+            }
 
             return null;
         }
 
         internal static HtmlEdit GetTextBoxByID(BrowserWindow _browserWindow, string controlName)
         {
-            HtmlEdit controls = new HtmlEdit(_browserWindow);
-            UITestControlCollection collection = controls.FindMatchingControls();
+            HtmlControl genericControl = GetHtmlControlsByIdOrName(_browserWindow, controlName);
+            HtmlEdit htmlEdit = new HtmlEdit();
 
-            if (collection.Count > 0)
-                foreach (HtmlEdit textBox in collection)
-                    if (textBox.Id == controlName || textBox.Name == controlName)
-                        return textBox;
+            if (genericControl != null)
+            {
+                htmlEdit.CopyFrom(genericControl);
+                return htmlEdit;
+            }
 
             return null;
         }
 
         internal static HtmlRadioButton GetRadioButtonByID(BrowserWindow _browserWindow, string controlName)
         {
-            HtmlRadioButton controls = new HtmlRadioButton(_browserWindow);
-            UITestControlCollection collection = controls.FindMatchingControls();
+            HtmlControl genericControl = GetHtmlControlsByIdOrName(_browserWindow, controlName);
+            HtmlRadioButton htmlRadioButton = new HtmlRadioButton();
 
-            if (collection.Count > 0)
-                foreach (HtmlRadioButton radioButton in collection)
-                    if (radioButton.Id == controlName || radioButton.Name == controlName)
-                        return radioButton;
+            if (genericControl != null)
+            {
+                htmlRadioButton.CopyFrom(genericControl);
+                return htmlRadioButton;
+            }
 
             return null;
         }
 
         internal static HtmlLabel GetLabelByID(BrowserWindow _browserWindow, string controlName)
         {
-            HtmlLabel controls = new HtmlLabel(_browserWindow);
-            UITestControlCollection collection = controls.FindMatchingControls();
+            HtmlControl genericControl = GetHtmlControlsByIdOrName(_browserWindow, controlName);
+            HtmlLabel htmlLabel = new HtmlLabel();
 
-            if (collection.Count > 0)
-                foreach (HtmlLabel label in collection)
-                    if (label.Id == controlName || label.Name == controlName)
-                        return label;
+            if (genericControl != null)
+            {
+                htmlLabel.CopyFrom(genericControl);
+                return htmlLabel;
+            }
 
             return null;
         }
 
         internal static HtmlSpan GetSpanByID(BrowserWindow _browserWindow, string controlName)
         {
-            HtmlSpan controls = new HtmlSpan(_browserWindow);
-            UITestControlCollection collection = controls.FindMatchingControls();
+            HtmlControl genericControl = GetHtmlControlsByIdOrName(_browserWindow, controlName);
+            HtmlSpan htmlSpan = new HtmlSpan();
 
-            if (collection.Count > 0)
-                foreach (HtmlSpan span in collection)
-                    if (span.Id == controlName || span.Name == controlName)
-                        return span;
+            if (genericControl != null)
+            {
+                htmlSpan.CopyFrom(genericControl);
+                return htmlSpan;
+            }
 
             return null;
         }
