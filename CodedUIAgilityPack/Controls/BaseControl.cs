@@ -11,9 +11,6 @@ namespace CodedUIAgilityPack.Controls
         {
             if (Browse.BrowserWindow == null)
                 throw new Exception("BrowserWindow is null!");
-
-            if(string.IsNullOrEmpty(controlName))
-                throw new Exception("Control name is null or empty!");
         }
     }
 }

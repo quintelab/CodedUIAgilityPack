@@ -8,6 +8,12 @@ namespace CodedUIAgilityPack.Controls.Interfaces
     public interface IButtonControls
     {
         /// <summary>
+        /// Localizate the button based on the css class name
+        /// </summary>
+        /// <param name="className">CSS class name</param>
+        void FindButtonByClassName(string className);
+
+        /// <summary>
         /// Return enabled property
         /// </summary>
         /// <returns>Boolean</returns>

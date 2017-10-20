@@ -8,12 +8,17 @@
 <button type="button" class="btn btn-primary disabled" id="disabled_button">Disabled Primary</button>
 <button type="button" class="btn btn-info" id="btn_info">Info</button>
 <button type="button" class="btn" id="btn_click">Click Button</button>
+<button type="button" class="btn button-without-id">Button without ID</button>
 
 @section scripts {
 
     <script>
 
         $("#btn_click").click(function () {
+            $(this).addClass("btn-success");
+        });
+
+        $(".button-without-id").click(function () {
             $(this).addClass("btn-success");
         });
 

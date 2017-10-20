@@ -52,5 +52,24 @@ namespace CodedUIAgilityPack.Demo
             button.Click();
             Assert.AreEqual(true, button.GetCssClassName.Contains("btn-success"));
         }
+
+        [TestMethod]
+        public void Button_Without_Id_Should_Change_CssClass_After_Click()
+        {
+            ButtonControl button = new ButtonControl();
+            button.FindButtonByClassName("btn button-without-id");
+
+            button.Click();
+            Assert.AreEqual(true, button.GetCssClassName.Contains("btn-success"));
+        }
+
+        [TestMethod]
+        public void Button_Without_Id_Should_Be_Active()
+        {
+            ButtonControl button = new ButtonControl();
+            button.FindButtonByClassName("btn button-without-id");
+
+            Assert.AreEqual(true, button.IsEnabled);
+        }
     }
 }

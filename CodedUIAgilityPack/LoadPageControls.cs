@@ -17,6 +17,17 @@ namespace CodedUIAgilityPack
             return null;
         }
 
+        private static HtmlControl GetHtmlControlsByClassName(BrowserWindow _browserWindow, string className)
+        {
+            HtmlControl control = new HtmlControl(_browserWindow);
+            control.SearchProperties["Class"] = className;
+
+            if (control.TryFind())
+                return control;
+
+            return null;
+        }
+
         internal static HtmlComboBox GetComboboxByID(BrowserWindow _browserWindow, string controlName)
         {
             HtmlControl genericControl = GetHtmlControlsByIdOrName(_browserWindow, controlName);
@@ -45,9 +56,15 @@ namespace CodedUIAgilityPack
             return null;
         }
 
-        internal static HtmlButton GetButtonByID(BrowserWindow _browserWindow, string controlName)
+        internal static HtmlButton GetButton(BrowserWindow _browserWindow, SearchBy searchBy, string control)
         {
-            HtmlControl genericControl = GetHtmlControlsByIdOrName(_browserWindow, controlName);
+            HtmlControl genericControl;
+
+            if (searchBy == SearchBy.ID)
+                genericControl = GetHtmlControlsByIdOrName(_browserWindow, control);
+            else
+                genericControl = GetHtmlControlsByClassName(_browserWindow, control);
+
             HtmlButton htmlButton = new HtmlButton();
 
             if (genericControl != null)
@@ -114,5 +131,11 @@ namespace CodedUIAgilityPack
 
             return null;
         }
+    }
+
+    internal enum SearchBy
+    {
+        ID,
+        ClassName
     }
 }
