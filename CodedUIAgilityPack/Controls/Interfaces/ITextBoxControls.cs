@@ -8,6 +8,12 @@ namespace CodedUIAgilityPack.Controls.Interfaces
     public interface ITextBoxControls
     {
         /// <summary>
+        /// Localizate the textbox based on the css class name
+        /// </summary>
+        /// <param name="className">CSS class name</param>
+        void FindTextBoxByClassName(string className);
+
+        /// <summary>
         /// Get the Css class name
         /// </summary>
         string GetCssClassName { get; }

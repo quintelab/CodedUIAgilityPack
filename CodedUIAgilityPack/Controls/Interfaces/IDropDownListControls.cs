@@ -9,6 +9,12 @@ namespace CodedUIAgilityPack.Controls.Interfaces
     public interface IDropDownListControls
     {
         /// <summary>
+        /// Localizate the dropdownlist based on the css class name
+        /// </summary>
+        /// <param name="className">CSS class name</param>
+        void FindDropDownListByClassName(string className);
+
+        /// <summary>
         /// Select one of the DropDownList options. This method will execute a click on the DropDownList.
         /// </summary>
         /// <param name="dropDownValue">DropDown value</param>

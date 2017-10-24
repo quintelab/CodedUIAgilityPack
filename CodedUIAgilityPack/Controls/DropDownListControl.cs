@@ -13,12 +13,36 @@ namespace CodedUIAgilityPack.Controls
     public class DropDownListControl : BaseControl, IDropDownListControls
     {
         /// <summary>
+        /// Create new instance of DropDownList control - This constructor should be used for DropDownList without ID
+        /// Use the method FindDropDownListByClassName to localizate your checkbox
+        /// </summary>
+        public DropDownListControl() : base(string.Empty)
+        {
+
+        }
+
+        /// <summary>
         /// Create a new 'select' control
         /// </summary>
         /// <param name="controlName">ID Property (ID that is render on the browser)</param>
         public DropDownListControl(string controlName) : base(controlName)
         {
-            DropDownList = LoadPageControls.GetComboboxByID(Browse.BrowserWindow, controlName);
+            DropDownList = LoadPageControls.GetCombobox(Browse.BrowserWindow, SearchBy.ID, controlName);
+
+            if (DropDownList == null)
+                throw new Exception("DropDownList not found!");
+        }
+
+        /// <summary>
+        /// Localizate the dropdownlist based on the css class name
+        /// </summary>
+        /// <param name="className">CSS class name</param>
+        public void FindDropDownListByClassName(string className)
+        {
+            if (string.IsNullOrEmpty(className))
+                throw new Exception("Class name is null or empty!");
+
+            DropDownList = LoadPageControls.GetCombobox(Browse.BrowserWindow, SearchBy.ClassName, className);
 
             if (DropDownList == null)
                 throw new Exception("DropDownList not found!");

@@ -8,6 +8,12 @@ namespace CodedUIAgilityPack.Controls.Interfaces
     public interface ILabelControls
     {
         /// <summary>
+        /// Localizate the label based on the css class name
+        /// </summary>
+        /// <param name="className">CSS class name</param>
+        void FindLabelByClassName(string className);
+
+        /// <summary>
         /// Return label's value
         /// </summary>
         string GetText { get; }

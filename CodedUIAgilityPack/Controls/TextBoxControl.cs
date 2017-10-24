@@ -10,12 +10,36 @@ namespace CodedUIAgilityPack.Controls
     public class TextBoxControl : BaseControl, ITextBoxControls
     {
         /// <summary>
+        /// Create new instance of TextBox control - This constructor should be used for TextBox without ID
+        /// Use the method FindTextBoxByClassName to localizate your TextBox
+        /// </summary>
+        public TextBoxControl() : base(string.Empty)
+        {
+
+        }
+
+        /// <summary>
         /// Create a new textbox control
         /// </summary>
         /// <param name="controlName"></param>
         public TextBoxControl(string controlName) : base(controlName)
         {
-            TextBox = LoadPageControls.GetTextBoxByID(Browse.BrowserWindow, controlName);
+            TextBox = LoadPageControls.GetTextBox(Browse.BrowserWindow, SearchBy.ID, controlName);
+
+            if (TextBox == null)
+                throw new Exception("TextBox not found!");
+        }
+
+        /// <summary>
+        /// Localizate the textbox based on the css class name
+        /// </summary>
+        /// <param name="className">CSS class name</param>
+        public void FindTextBoxByClassName(string className)
+        {
+            if (string.IsNullOrEmpty(className))
+                throw new Exception("Class name is null or empty!");
+
+            TextBox = LoadPageControls.GetTextBox(Browse.BrowserWindow, SearchBy.ClassName, className);
 
             if (TextBox == null)
                 throw new Exception("TextBox not found!");

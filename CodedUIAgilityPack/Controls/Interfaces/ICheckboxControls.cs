@@ -8,6 +8,12 @@ namespace CodedUIAgilityPack.Controls.Interfaces
     public interface ICheckboxControls
     {
         /// <summary>
+        /// Localizate the checkbox based on the css class name
+        /// </summary>
+        /// <param name="className">CSS class name</param>
+        void FindCheckBoxByClassName(string className);
+
+        /// <summary>
         /// Return if checkbox is checked
         /// </summary>
         bool IsChecked { get; }

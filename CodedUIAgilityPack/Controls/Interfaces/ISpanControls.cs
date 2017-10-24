@@ -8,6 +8,12 @@ namespace CodedUIAgilityPack.Controls.Interfaces
     public interface ISpanControls
     {
         /// <summary>
+        /// Localizate the span based on the css class name
+        /// </summary>
+        /// <param name="className">CSS class name</param>
+        void FindSpanByClassName(string className);
+
+        /// <summary>
         /// Return span's value
         /// </summary>
         string GetText { get; }
