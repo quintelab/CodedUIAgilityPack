@@ -9,12 +9,6 @@ namespace CodedUIAgilityPack.Controls.Interfaces
     public interface IRadioButtonControls
     {
         /// <summary>
-        /// Localizate the radiobutton based on the css class name
-        /// </summary>
-        /// <param name="className">CSS class name</param>
-        void FindRadioButtonByClassName(string className);
-
-        /// <summary>
         /// Select one of the RadioButtom items, based on its ID. This method will execute a click on the radiobutton.
         /// </summary>
         /// <param name="radioButtonItemName">RadioButton Item name, ID that is render on the browser</param>

@@ -14,36 +14,12 @@ namespace CodedUIAgilityPack.Controls
     public class RadioButtonControl : BaseControl, IRadioButtonControls
     {
         /// <summary>
-        /// Create new instance of RadioButton control - This constructor should be used for RadioButton without ID
-        /// Use the method FindRadioButtonByClassName to localizate your RadioButton
-        /// </summary>
-        public RadioButtonControl() : base(string.Empty)
-        {
-
-        }
-
-        /// <summary>
         /// Create a new RadioButton control
         /// </summary>
         /// <param name="controlName">ID Property (ID that is render on the browser)</param>
         public RadioButtonControl(string controlName) : base(controlName)
         {
             RadioButton = LoadPageControls.GetRadioButton(Browse.BrowserWindow, SearchBy.ID, controlName);
-
-            if (RadioButton == null)
-                throw new Exception("RadioButton not found!");
-        }
-
-        /// <summary>
-        /// Localizate the radiobutton based on the css class name
-        /// </summary>
-        /// <param name="className">CSS class name</param>
-        public void FindRadioButtonByClassName(string className)
-        {
-            if (string.IsNullOrEmpty(className))
-                throw new Exception("Class name is null or empty!");
-
-            RadioButton = LoadPageControls.GetRadioButton(Browse.BrowserWindow, SearchBy.ClassName, className);
 
             if (RadioButton == null)
                 throw new Exception("RadioButton not found!");
