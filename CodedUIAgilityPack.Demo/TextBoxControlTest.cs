@@ -52,5 +52,23 @@ namespace CodedUIAgilityPack.Demo
             textbox.SetText("unit test");
             Assert.AreEqual("unit test", textbox.GetText);
         }
+
+        [TestMethod]
+        public void Textbox_Without_Id_Should_Have_Text_Value()
+        {
+            TextBoxControl textbox = new TextBoxControl();
+            textbox.FindTextBoxByClassName("form-control textbox-without-id");
+            Assert.AreEqual("No id", textbox.GetText);
+        }
+
+        [TestMethod]
+        public void Textbox_Without_Id_Should_Set_Value()
+        {
+            TextBoxControl textbox = new TextBoxControl();
+            textbox.FindTextBoxByClassName("form-control textbox-without-id");
+            textbox.SetText("Text for the textbox without id");
+
+            Assert.AreEqual("Text for the textbox without id", textbox.GetText);
+        }
     }
 }
