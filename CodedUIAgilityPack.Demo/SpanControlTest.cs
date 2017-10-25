@@ -45,5 +45,13 @@ namespace CodedUIAgilityPack.Demo
             span.Click();
             Assert.AreEqual(true, span.GetCssClassName.Contains("label-success"));
         }
+
+        [TestMethod]
+        public void Span_Without_Id_Should_Have_Text_I_Am_A_Span_Without_Id()
+        {
+            SpanControl span = new SpanControl();
+            span.FindSpanByClassName("label label-default span-without-id");
+            Assert.AreEqual("I am a span without ID.", span.GetText);
+        }
     }
 }
