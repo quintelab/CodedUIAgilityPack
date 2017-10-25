@@ -76,5 +76,21 @@ namespace CodedUIAgilityPack.Demo
             CheckboxControl checkbox = new CheckboxControl("checkbox_unchecked");
             Assert.AreEqual("test", checkbox.GetCssClassName);
         }
+
+        [TestMethod]
+        public void Checkbox_Without_Id_Should_Be_Checked()
+        {
+            CheckboxControl checkbox = new CheckboxControl();
+            checkbox.FindCheckBoxByClassName("checkbox-without-id checked");
+            Assert.AreEqual(true, checkbox.IsChecked);
+        }
+
+        [TestMethod]
+        public void Checkbox_Without_Id_Should_Be_Disabled()
+        {
+            CheckboxControl checkbox = new CheckboxControl();
+            checkbox.FindCheckBoxByClassName("checkbox-without-id disabled");
+            Assert.AreEqual(false, checkbox.IsEnabled);
+        }
     }
 }
