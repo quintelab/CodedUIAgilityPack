@@ -47,5 +47,11 @@ namespace CodedUIAgilityPack.Demo
 You can install it from [Nuget](https://www.nuget.org/packages/CodedUIAgilityPack/)
 
 ```
-Install-Package CodedUIAgilityPack -Version 1.0.0
+Install-Package CodedUIAgilityPack -Version 1.0.6
 ```
+
+## Dependencies
+- Microsoft.VisualStudio.TestTools.UITesting.dll
+- Microsoft.VisualStudio.TestTools.UITest.Extension.dll
+
+Both dlls from the Visual Studio 2017.
