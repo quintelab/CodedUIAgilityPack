@@ -45,5 +45,13 @@ namespace CodedUIAgilityPack.Demo
             label.Click();
             Assert.AreEqual(true, label.GetCssClassName.Contains("label-success"));
         }
+
+        [TestMethod]
+        public void Label_Without_Id_Should_Have_Text_I_Am_A_Label_Without_Id()
+        {
+            LabelControl label = new LabelControl();
+            label.FindLabelByClassName("label label-default label-without-id");
+            Assert.AreEqual("I am a label without ID.", label.GetText);
+        }
     }
 }
