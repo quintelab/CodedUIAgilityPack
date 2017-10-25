@@ -52,9 +52,27 @@ namespace CodedUIAgilityPack.Demo
         }
 
         [TestMethod]
-        public void DropDownList_Should_Have_Four_Items()
+        public void DropDownList_Should_Have_Five_Items()
         {
             Assert.AreEqual(5, myDropDownList.NumberOfItems);
+        }
+
+        [TestMethod]
+        public void DropDownList_Without_Id_Should_Select_Value_Twitter()
+        {
+            DropDownListControl dropDownList = new DropDownListControl();
+            dropDownList.FindDropDownListByClassName("form-control dropdown-without-id");
+            dropDownList.Select("twitter");
+
+            Assert.AreEqual("twitter", dropDownList.SelectedValue);
+        }
+
+        [TestMethod]
+        public void DropDownList_Without_Id_Should_Have_Four_Items()
+        {
+            DropDownListControl dropDownList = new DropDownListControl();
+            dropDownList.FindDropDownListByClassName("form-control dropdown-without-id");
+            Assert.AreEqual(4, dropDownList.NumberOfItems);
         }
     }
 }
